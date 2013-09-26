@@ -84,17 +84,11 @@ class NTLMSoapClient extends SoapClient
         curl_setopt($this->ch, CURLOPT_USERPWD, $this->user.':'.$this->password);
 
         $response = curl_exec($this->ch);
-        
-        // Test
 
-        // TODO: Add some real error handling.
-        // If the response if false than there was an error and we should throw
-        // an exception.
         if ($response === false) {
-            throw new EWSException(
-              'Curl error: ' . curl_error($this->ch),
-              curl_errno($this->ch)
-            );
+            $_SESSION['ews'] = 'offline';
+        } else {
+            $_SESSION['ews'] = 'online';
         }
 
         return $response;
