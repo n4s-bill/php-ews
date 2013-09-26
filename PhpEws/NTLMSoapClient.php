@@ -84,6 +84,8 @@ class NTLMSoapClient extends SoapClient
         curl_setopt($this->ch, CURLOPT_USERPWD, $this->user.':'.$this->password);
 
         $response = curl_exec($this->ch);
+        
+        // Test
 
         // TODO: Add some real error handling.
         // If the response if false than there was an error and we should throw
