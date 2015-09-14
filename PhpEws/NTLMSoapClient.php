@@ -82,7 +82,7 @@ class NTLMSoapClient extends SoapClient
         curl_setopt($this->ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($this->ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC | CURLAUTH_NTLM);
         curl_setopt($this->ch, CURLOPT_USERPWD, $this->user.':'.$this->password);
-        curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 10);
 
         $response = curl_exec($this->ch);
 
