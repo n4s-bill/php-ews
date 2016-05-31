@@ -8,11 +8,11 @@
  
 namespace PhpEws;
 
-use EWSException;
+use Exception;
 
 /**
  * Exception class for Exchange Web Services
  */
-class EWSItemNotFoundException extends EWSException
+class EWSItemNotFoundException extends Exception
 {
 }
