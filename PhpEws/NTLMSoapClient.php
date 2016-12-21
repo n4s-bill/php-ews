@@ -107,7 +107,19 @@ class NTLMSoapClient extends SoapClient
      */
     public function sanitizeXml($xml)
     {
-        return preg_replace('/&#?[a-z0-9]+;/i', '', $xml);
+        // Illegal HTML entities (http://do.remifa.so/archives/unicode/latin1.html)
+        $patterns = [
+            '/&#x0;/i', '/&#x1;/i', '/&#x2;/i', '/&#x3;/i', '/&#x4;/i', '/&#x5;/i', '/&#x6;/i',
+            '/&#x7;/i', '/&#x8;/i', '/&#xb;/i', '/&#xc;/i', '/&#xe;/i', '/&#xf;/i', '/&#x10;/i',
+            '/&#x11;/i', '/&#x12;/i', '/&#x13;/i', '/&#x14;/i', '/&#x15;/i', '/&#x16;/i', '/&#x17;/i',
+            '/&#x18;/i', '/&#x19;/i', '/&#x1a;/i', '/&#x1b;/i', '/&#x1c;/i', '/&#x1d;/i', '/&#x1e;/i',
+            '/&#x1f;/i', '/&#x7f;/i', '/&#x80;/i', '/&#x81;/i', '/&#x82;/i', '/&#x83;/i', '/&#x84;/i',
+            '/&#x85;/i', '/&#x86;/i', '/&#x87;/i', '/&#x88;/i', '/&#x89;/i', '/&#x8a;/i', '/&#x8b;/i',
+            '/&#x8c;/i', '/&#x8d;/i', '/&#x8e;/i', '/&#x8f;/i', '/&#x90;/i', '/&#x91;/i', '/&#x92;/i',
+            '/&#x93;/i', '/&#x94;/i', '/&#x95;/i', '/&#x96;/i', '/&#x97;/i', '/&#x98;/i', '/&#x99;/i',
+            '/&#x9a;/i', '/&#x9b;/i', '/&#x9c;/i', '/&#x9d;/i', '/&#x9e;/i', '/&#x9f;/i'
+        ];
+        return preg_replace($patterns, '', $xml);
     }
 
     /**
