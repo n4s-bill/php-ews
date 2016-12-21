@@ -96,7 +96,18 @@ class NTLMSoapClient extends SoapClient
             );
         }
 
-        return $response;
+        return $this->sanitizeXml($response);
+    }
+    
+    /**
+     * Sanitize XML returned by EWS
+     *
+     * @param $xml
+     * @return string
+     */
+    public function sanitizeXml($xml)
+    {
+        return preg_replace('/&#?[a-z0-9]+;/i', '', $xml);
     }
 
     /**
